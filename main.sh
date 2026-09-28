@@ -24,6 +24,16 @@ echo "--- copilot cli"
 npm install -g @github/copilot
 echo ""
 
+
+echo "install mamba"
+# mamba from conda-forge: only use the conda-forge channel, do NOT use the paid Anaconda Inc channels
+wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+bash Miniforge3.sh -b -p "${HOME}/conda"
+rm -f Miniforge3.sh
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+mamba shell init
+echo ""
+
 # if I wanted to create a folder, add a file, write to it, I would for example:
 #   mkdir -p $HOME/some_location
 #   touch $HOME/some_location/myfile
