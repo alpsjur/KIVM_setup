@@ -22,6 +22,15 @@ echo "--- node"
 nvm install node
 echo "--- copilot cli"
 npm install -g @github/copilot
+echo "--- opencode"
+# postinstall must run: it fetches the platform binary
+npm install -g --allow-scripts=@opencode/cli @opencode/cli
+echo ""
+
+echo "install kitty terminal (user-space, no sudo)"
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+mkdir -p "$HOME/.local/bin"
+ln -sf "$HOME/.local/kitty.app/bin/kitty" "$HOME/.local/kitty.app/bin/kitten" "$HOME/.local/bin/"
 echo ""
 
 
