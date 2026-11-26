@@ -13,3 +13,6 @@ Minimal KIVM setup script.
 - **Miniforge/Mamba** (installed to `~/conda`, conda-forge channel only; initialized with `mamba shell init`)
 - **mdcat** (conda-forge, symlinked to `~/.local/bin/mdcat`)
   - Adds `MDCAT_IMAGE_PROTOCOL=kitty` and an `md` pager helper to `~/.bashrc` (inline images over SSH)
+- **yazi** (conda-forge, symlinked to `~/.local/bin/yazi` and `ya`)
+  - Also installs the helpers yazi calls: `fzf`, `fd`, `ripgrep`, `zoxide`, `jq`
+  - Adds a `y` function to `~/.bashrc`: run `y` instead of `yazi`, and quitting with `q` leaves the shell in the folder you were browsing (`Q` quits without changing directory)

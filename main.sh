@@ -157,6 +157,26 @@ EOF
 fi
 echo ""
 
+echo "install yazi (terminal file manager) and the helpers it calls (fzf, fd, rg, zoxide)"
+"${HOME}/conda/bin/mamba" install -y -c conda-forge yazi fzf fd-find ripgrep zoxide jq
+ln -sf "$HOME/conda/bin/yazi" "$HOME/conda/bin/ya" "$HOME/.local/bin/"
+ln -sf "$HOME/conda/bin/fzf" "$HOME/conda/bin/fd" "$HOME/conda/bin/rg" "$HOME/conda/bin/zoxide" "$HOME/.local/bin/"
+# y: start yazi and cd the shell into the last directory when quitting with q (Q quits without cd)
+if ! grep -q 'function y()' "$HOME/.bashrc"; then
+cat >> "$HOME/.bashrc" <<'EOF'
+
+# yazi: cd into the last directory when quitting
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+EOF
+fi
+echo ""
+
 # if I wanted to create a folder, add a file, write to it, I would for example:
 #   mkdir -p $HOME/some_location
 #   touch $HOME/some_location/myfile
