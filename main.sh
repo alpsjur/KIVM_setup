@@ -1,4 +1,4 @@
-echo "Dummy setup start..."
+echo "Setup start..."
 echo ""
 
 # show basic stats
@@ -182,4 +182,4 @@ echo ""
 #   touch $HOME/some_location/myfile
 #   echo "writing" >> $HOME/some_location/myfile
 
-echo "... dummy setup end"
+echo "... setup end"
